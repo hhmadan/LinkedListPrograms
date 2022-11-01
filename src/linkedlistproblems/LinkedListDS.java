@@ -17,10 +17,10 @@ public class LinkedListDS {
             head = newNode;
         }
         else{
-            newNode.next = head;
-            head = newNode;
+            tail.next = newNode;
         }
         tail = newNode;
+
     }
     public void getDisplay(){
         Node current = head;
@@ -37,9 +37,9 @@ public class LinkedListDS {
     public static void main(String[] args) {
         LinkedListDS list = new LinkedListDS();
         list.getDisplay();
-        list.addNode(70);
-        list.addNode(30);
         list.addNode(56);
+        list.addNode(30);
+        list.addNode(70);
         list.getDisplay();
     }
 }
