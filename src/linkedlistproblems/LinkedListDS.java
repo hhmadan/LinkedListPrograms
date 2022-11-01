@@ -10,7 +10,6 @@ public class LinkedListDS {
     }
     public Node head = null;
     public Node tail = null;
-
     public void addNode(int data){
         Node newNode = new Node(data);
         if(head == null){
