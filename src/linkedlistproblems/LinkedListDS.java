@@ -9,7 +9,6 @@ public class LinkedListDS {
         }
     }
     public Node head = null;
-    public Node tail = null;
     public void addNode(int data){
         Node node = new Node(data);
         if(head == null){
@@ -23,25 +22,32 @@ public class LinkedListDS {
             tmp.next = node;
         }
     }
+    public LinkedListDS pop(LinkedListDS list, int index) {
+        Node current = list.head, prev = null;
 
-    public Node addNodeAt(int pos, int data){
-        if(pos == 1){
-            Node newNode = new Node(data);
-            newNode.next = head;
-            head = newNode;
+        if (index == 0 && current != null) {
+            list.head = current.next;
+            return list;
         }
-        else{
-            while(pos-- !=0){
-                if(pos ==1){
-                    Node newNode = new Node(data);
-                    newNode.next = head.next;
-                    head.next = newNode;
-                    break;
-                }
-                head = head.next;
+
+        int counter = 0;
+        while (current != null) {
+
+            if (counter == index) {
+                prev.next = current.next;
+                System.out.println(index + " position element deleted");
+                break;
+            } else {
+
+                prev = current;
+                current = current.next;
+                counter++;
             }
         }
-        return head;
+        if (current == null) {
+            System.out.println(index + " position element not found");
+        }
+        return list;
     }
     public void getDisplay(){
         Node current = head;
@@ -60,10 +66,15 @@ public class LinkedListDS {
         list.getDisplay();
         System.out.println("\nNodes created in Linked List are: ");
         list.addNode(56);
+        list.addNode(30);
         list.addNode(70);
         list.getDisplay();
         System.out.println("\nAfter inserting node in between list is: ");
-        list.addNodeAt(2,30);
+        list.getDisplay();
+        System.out.println("\nAfter deleting node list is: ");
+        list.pop(list,0);
+        //list.pop(list,1);
+        //list.pop(list,2);
         list.getDisplay();
     }
 }
