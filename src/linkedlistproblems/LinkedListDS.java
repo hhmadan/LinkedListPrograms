@@ -1,6 +1,6 @@
 package linkedlistproblems;
 public class LinkedListDS {
-    class Node{
+    static class Node{
         int data;
         Node next;
         Node(int data) {
@@ -22,20 +22,22 @@ public class LinkedListDS {
             tmp.next = node;
         }
     }
-    public int findNode(int data){
+    public void findNode(int data, int nextData){
+        Node newNode = new Node(nextData);
         int cnt = 1;
         Node tmp = head;
         while(tmp != null){
             if(tmp.data == data){
                 System.out.println("The Searched Value "+data+" is at position "+cnt);
-                return cnt;
-            } else{
+                newNode.next = tmp.next;
+                tmp.next = newNode;
+                break;
+            }
                 tmp = tmp.next;
                 cnt++;
             }
-        }
-        return 0;
     }
+
     public void getDisplay(){
         Node current = head;
         if(head == null){
@@ -57,6 +59,8 @@ public class LinkedListDS {
         list.addNode(70);
         list.getDisplay();
         System.out.println("\nSearching Value... ");
-        list.findNode(30);
+        list.findNode(30,40);
+        System.out.println("\nNew List after adding element is :");
+        list.getDisplay();
     }
 }
