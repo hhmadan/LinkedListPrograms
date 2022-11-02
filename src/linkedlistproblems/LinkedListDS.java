@@ -37,7 +37,29 @@ public class LinkedListDS {
                 cnt++;
             }
     }
-
+    void delNode(int data) {
+        Node tmp = head, preData = null;
+        if (tmp != null && tmp.data == data) {
+            head = tmp.next;
+            return;
+        }
+        while (tmp != null && tmp.data != data) {
+            preData = tmp;
+            tmp = tmp.next;
+        }
+        if (tmp == null)
+            return;
+        preData.next = tmp.next;
+    }
+    public int size(){
+        int len=0;
+        Node current = head;
+        while (current!= null){
+            current = current.next;
+            len++;
+        }
+        return len;
+    }
     public void getDisplay(){
         Node current = head;
         if(head == null){
@@ -60,7 +82,11 @@ public class LinkedListDS {
         list.getDisplay();
         System.out.println("\nSearching Value... ");
         list.findNode(30,40);
-        System.out.println("\nNew List after adding element is :");
+        System.out.println("\nList after adding element is :");
         list.getDisplay();
+        System.out.println("\nNew List after deleting element is: ");
+        list.delNode(40);
+        list.getDisplay();
+        System.out.println("\nSize after removing element is: "+list.size());
     }
 }
