@@ -22,43 +22,23 @@ public class LinkedListDS {
             tmp.next = node;
         }
     }
-    public void findNode(int data, int nextData){
-        Node newNode = new Node(nextData);
-        int cnt = 1;
-        Node tmp = head;
-        while(tmp != null){
-            if(tmp.data == data){
-                System.out.println("The Searched Value "+data+" is at position "+cnt);
-                newNode.next = tmp.next;
-                tmp.next = newNode;
-                break;
+    public void sortNodes(){
+        Node current = head, index;
+        int temp;
+        while (current != null)
+        {
+            index = current.next;
+            while (index != null) {
+                    if (current.data > index.data)
+                    {
+                        temp = current.data;
+                        current.data = index.data;
+                        index.data = temp;
+                    }
+                    index = index.next;
             }
-                tmp = tmp.next;
-                cnt++;
-            }
-    }
-    void delNode(int data) {
-        Node tmp = head, preData = null;
-        if (tmp != null && tmp.data == data) {
-            head = tmp.next;
-            return;
+                current = current.next;
         }
-        while (tmp != null && tmp.data != data) {
-            preData = tmp;
-            tmp = tmp.next;
-        }
-        if (tmp == null)
-            return;
-        preData.next = tmp.next;
-    }
-    public int size(){
-        int len=0;
-        Node current = head;
-        while (current!= null){
-            current = current.next;
-            len++;
-        }
-        return len;
     }
     public void getDisplay(){
         Node current = head;
@@ -73,20 +53,16 @@ public class LinkedListDS {
     }
     public static void main(String[] args) {
         LinkedListDS list = new LinkedListDS();
-        System.out.println("Initially, linked list is..");
+        System.out.println("\nInitially, linked list is..");
         list.getDisplay();
         System.out.println("\nNodes created in Linked List are: ");
         list.addNode(56);
         list.addNode(30);
+        list.addNode(40);
         list.addNode(70);
         list.getDisplay();
-        System.out.println("\nSearching Value... ");
-        list.findNode(30,40);
-        System.out.println("\nList after adding element is :");
+        System.out.println("\nAFTER SORTING ...");
+        list.sortNodes();
         list.getDisplay();
-        System.out.println("\nNew List after deleting element is: ");
-        list.delNode(40);
-        list.getDisplay();
-        System.out.println("\nSize after removing element is: "+list.size());
     }
 }
